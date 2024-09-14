@@ -1,0 +1,24 @@
+{
+  "name": "hackaton",
+  "version": "1.0.0",
+  "description": "Squire hackaton text2video project",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "local": "nodemon -r dotenv/config --delay 1000 server.js -r dotenv_config_path=.env.local"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@mendable/firecrawl-js": "^1.4.3",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "http-status-codes": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
