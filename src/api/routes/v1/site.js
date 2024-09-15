@@ -13,9 +13,8 @@ export default app => {
     try {
       const url_processed = await SiteService.processUrl(req?.body?.url)
       return res.json({
-        "sc_id": url_processed.sc_id,
-        "status": "CREATED",
-        "content": url_processed.content
+        ...url_processed,
+        "status": "CREATED"
       }).status(StatusCodes.CREATED);
     } catch (err) {
       return next(err);
