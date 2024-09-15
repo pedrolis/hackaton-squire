@@ -66,6 +66,16 @@ class SiteService {
       }
   }
 
+  async getSiteContent(sc_id) {
+    try {
+      // return await JSON.parse(CacheService.get(`processed:${sc_id}`))
+      return {}
+    } catch (err) {
+      console.error(`Cannot get video list for ${sc_id}.`, { err });
+    }
+    return {}
+  }
+
   async getSiteVideos(sc_id) {
     let videos = []
     try {

@@ -36,6 +36,7 @@ export default app => {
   route.get("/:id", async (req, res, next) => {
     try {
       const videos = await SiteService.getSiteVideos(req?.params?.id)
+      const siteContent = await SiteService.getSiteContent(req?.params?.id)
       const status = videos && videos.length ? "COMPLETED" : "PROCESSING"
 
       return res.json({
@@ -43,7 +44,8 @@ export default app => {
         status,
         "video_url": videos ? videos[0] : null,
         videos,
-        "logo_url": null        
+        "logo_url": null,
+        ...siteContent
       }).status(StatusCodes.OK);
     } catch (err) {
       return next(err);
