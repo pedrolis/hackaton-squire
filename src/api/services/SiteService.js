@@ -78,6 +78,23 @@ class SiteService {
     }
     return videos
   }
+
+  async getAllVideos() {
+    try {
+        const videoKeys = await CacheService.keys(`videos:*`)
+
+        let videos = []
+        for (const key of videoKeys) {
+          const siteVideos = await CacheService.lRange(key)
+          videos = [...videos, ...siteVideos]
+        }
+
+        return videos
+    } catch (err) {
+      console.error(`Cannot get all video list for `, { err });
+    }
+    return []
+  }
 }
 
 export default new SiteService();

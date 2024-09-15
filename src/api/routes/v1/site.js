@@ -21,9 +21,20 @@ export default app => {
     }
   });
 
+  route.get("/videos", async (req, res, next) => {
+    try {
+      const videos = await SiteService.getAllVideos()
+      return res.json({
+        videos
+      })
+      .status(StatusCodes.OK);
+    } catch (err) {
+      return next(err);
+    }
+  });
+
   route.get("/:id", async (req, res, next) => {
     try {
-      console.log(`1!!!`)
       const videos = await SiteService.getSiteVideos(req?.params?.id)
       const status = videos && videos.length ? "COMPLETED" : "PROCESSING"
 

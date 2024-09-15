@@ -50,6 +50,16 @@ class RedisService {
         return []
       } 
     }
+
+    async keys(prefix) {
+      await this.init();
+      try {
+        return await this.client.keys(prefix);
+      } catch (err) {
+        console.error('Error fetching list elements:', err);
+      } 
+      return []
+    }
   }
   
   export default new RedisService();
