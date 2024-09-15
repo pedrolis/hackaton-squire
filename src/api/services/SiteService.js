@@ -31,8 +31,9 @@ class SiteService {
       const logos = await LogoService.getWebsiteLogos(websiteUrl);
       
       const companyPitch = await this.createCompanyPitch(sc_id, content)
-      const audioText = companyPitch.videoSegments.segments.flatMap(item => `- ${item.visuals}`).join('\n');
-      const response = { sc_id, content, ...companyPitch, audioText, logos }
+      const audioText = companyPitch.videoSegments.segments.flatMap(item => `- ${item.script}`).join('\n');
+      const videoPromptText = companyPitch.videoSegments.segments.flatMap(item => `- ${item.visuals}`).join('\n');
+      const response = { sc_id, content, ...companyPitch, audioText, videoPromptText, logos }
 
       const processedKey = `processed:${sc_id}`
       await CacheService.set(processedKey, JSON.stringify(response))
