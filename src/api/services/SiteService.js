@@ -28,6 +28,22 @@ class SiteService {
       }
 
 
+      const companyPitch = await this.createCompanyPitch(sc_id, content)
+      const response = { sc_id, content, ...companyPitch }
+
+      const processedKey = `processed:${sc_id}`
+      await CacheService.set(processedKey, JSON.stringify(response))
+      await CacheService.lPush('processed', sc_id)
+
+
+      return response
+    } catch (err) {
+      console.error("An error occured when processing the website information.", { err });
+      throw new ApiError("An internal server error occurred");
+    }
+  }
+
+  async createCompanyPitch(sc_id, content) {
       console.log(`MD5: '${sc_id}', Understanding business with OpenAI`)
       const companyInsights = await OpenAIService.getCompanyInsights(content)
       console.log(`MD5: '${sc_id}', Understanding business finished`)
@@ -42,22 +58,12 @@ class SiteService {
       const videoSegments = await OpenAIService.createVideoSegments(companyExplanationPitch)
       console.log(`MD5: '${sc_id}', Video Segments finished`)
 
-
-      const response = { sc_id, content, companyInsights, companyExplanationPitch, videoSegments }
-      const responseAsText = JSON.stringify(response)
-
-
-      const processedKey = `processed:${sc_id}`
-      await CacheService.set(processedKey, responseAsText)
-      await CacheService.lPush('processed', sc_id)
-
-      return response
-    } catch (err) {
-      console.error("An error occured when processing the website information.", { err });
-      throw new ApiError("An internal server error occurred");
-    }
+      return { 
+        companyInsights, 
+        companyExplanationPitch, 
+        videoSegments 
+      }
   }
-
 
   async getSiteVideos(sc_id) {
     let videos = []

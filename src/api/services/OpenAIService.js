@@ -168,7 +168,7 @@ class OpenAIService {
 
   async createVisualSegments(salesVideoPitch) {
    return `
-   We want to generate a 30 second video based on the script below. The video should be divided into 5 segments of 6 seconds each. Propose 5 visuals for each of the 5 segments the video will have. YOU MUST AVOID the following types of visuals that image generation models struggle to generate: 
+   We want to generate a 30 second video based on the script below. The video should be divided into 6 segments of 5 seconds each. Propose 5 visuals for each of the 5 segments the video will have. YOU MUST AVOID the following types of visuals that image generation models struggle to generate: 
 1. Text: Generating readable and accurate text (like signage, posters, or articles). 
 2. Complex hands and fingers: Detailed hand gestures or natural hand positions often appear distorted. 
 3. Crowds or large groups of people: Maintaining unique details for many people in the same scene is difficult. 
