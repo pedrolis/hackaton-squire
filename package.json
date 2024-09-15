@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "local": "nodemon -r dotenv/config --delay 1000 server.js -r dotenv_config_path=.env.local"
+    "local": "nodemon -r dotenv/config server.js -r dotenv_config_path=.env.local"
   },
   "author": "",
   "license": "ISC",

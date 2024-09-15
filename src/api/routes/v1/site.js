@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { StatusCodes } from "http-status-codes";
-import crypto from 'crypto'
+
+import SiteService from '../../services/SiteService.js'
 
 const route = Router();
 
@@ -10,9 +11,11 @@ export default app => {
   
   route.post("/", async (req, res, next) => {
     try {
+      const url_processed = await SiteService.processUrl(req?.body?.url)
       return res.json({
-        "sc_id": crypto.createHash('md5').update(req.body.url).digest("hex"),
-        "status": "CREATED"
+        "sc_id": url_processed.sc_id,
+        "status": "CREATED",
+        "content": url_processed.content
       }).status(StatusCodes.CREATED);
     } catch (err) {
       return next(err);
