@@ -23,12 +23,15 @@ export default app => {
 
   route.get("/:id", async (req, res, next) => {
     try {
-      // const data = await UsersService.getUser(req.params.id);
+      console.log(`1!!!`)
+      const videos = await SiteService.getSiteVideos(req?.params?.id)
+      const status = videos && videos.length ? "COMPLETED" : "PROCESSING"
+
       return res.json({
         "sc_id": req.params.id,
-        "status": "SEARCHING",
-        "content": null,
-        "video_url": null,
+        status,
+        "video_url": videos ? videos[0] : null,
+        videos,
         "logo_url": null        
       }).status(StatusCodes.OK);
     } catch (err) {

@@ -33,6 +33,23 @@ class RedisService {
         await this.init();
         await this.client.set(key, value);
     }
+
+    async lPush(queue, value) {
+      await this.init();
+      await this.client.lPush(queue, value)
+    }
+
+    async lRange(key, start=0, stop=-1) {
+      await this.init();
+      try {
+        const elements = await this.client.lRange(key, 0, -1);
+        console.log(`Elements for list ${key}:`, elements);
+        return elements
+      } catch (err) {
+        console.error('Error fetching list elements:', err);
+        return []
+      } 
+    }
   }
   
   export default new RedisService();
