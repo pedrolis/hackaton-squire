@@ -6,6 +6,7 @@ const OPENAI_API_KEY_API_KEY = process?.env?.OPENAI_API_KEY || ''
 const openai = new OpenAI({
     apiKey: OPENAI_API_KEY_API_KEY
 });
+const OPEN_AI_MODEL = "gpt-4o"
 
 
 class OpenAIService {
@@ -15,7 +16,7 @@ class OpenAIService {
         const socialMediaPerson = await this.socialMediaPerson()
         const understandBusinessPrompt = await this.understandBusinessPrompt(businessContent)
         const openAIResponse = await openai.chat.completions.create({
-            model: "gpt-4o",
+            model: OPEN_AI_MODEL,
             messages: [
                 { role: "system", content: socialMediaPerson },
                 {
@@ -39,7 +40,7 @@ class OpenAIService {
       const prompt = await this.videoPrompt(companyInsights)
 
       const openAIResponse = await openai.chat.completions.create({
-          model: "gpt-4o",
+          model: OPEN_AI_MODEL,
           messages: [
             { role: "system", content: socialMediaPerson },
             {role: "user", content: prompt}
@@ -61,7 +62,7 @@ class OpenAIService {
       const prompt = await this.createVisualSegments(companyExplanationPitch)
 
       const openAIResponse = await openai.chat.completions.create({
-          model: "gpt-4o",
+          model: OPEN_AI_MODEL,
           messages: [
             // { role: "system", content: socialMediaPerson },
             {role: "user", content: prompt}
