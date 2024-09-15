@@ -3,7 +3,6 @@ import { StatusCodes } from "http-status-codes";
 import ApiError from "../errors/ApiErrors.js";
 
 import FirecrawlApp from '@mendable/firecrawl-js'
-import fs, { write } from 'node:fs'
 const FIRECRAWL_API_KEY = process?.env?.FIRECRAWL_API_KEY || ''
 const firecrawlApp = new FirecrawlApp({apiKey: FIRECRAWL_API_KEY})
 

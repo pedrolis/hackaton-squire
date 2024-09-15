@@ -4,6 +4,7 @@ import crypto from 'crypto'
 
 import ApiError from "../errors/ApiErrors.js";
 import CrawlService from "./CrawlService.js";
+import LogoService from "./LogoService.js";
 import OpenAIService from "./OpenAIService.js";
 import CacheService from "./CacheService.js";
 
@@ -27,14 +28,14 @@ class SiteService {
         console.log(`Key: '${contentKey}', crawl finished`)
       }
 
-
+      const logos = await LogoService.getWebsiteLogos(websiteUrl);
+      
       const companyPitch = await this.createCompanyPitch(sc_id, content)
-      const response = { sc_id, content, ...companyPitch }
+      const response = { sc_id, content, ...companyPitch, logos }
 
       const processedKey = `processed:${sc_id}`
       await CacheService.set(processedKey, JSON.stringify(response))
       await CacheService.lPush('processed', sc_id)
-
 
       return response
     } catch (err) {
