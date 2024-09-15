@@ -5,7 +5,9 @@ import express from 'express'
 const PORT = process?.env?.PORT || 3000
 
 const app = express()
+import cors from 'cors';
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 
 import api from "./src/api/routes/index.js";
