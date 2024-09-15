@@ -12,7 +12,7 @@ class SiteService {
 
   async processUrl(websiteUrl) {
     try {
-      const sc_id = await crypto.createHash('md5').update(websiteUrl).digest("hex")
+      const sc_id = await crypto.createHash('sha256').update(websiteUrl).digest("hex")
       console.log(`URL: ${websiteUrl}, MD5: '${sc_id}'`)
 
       const contentKey = `content:${sc_id}`
