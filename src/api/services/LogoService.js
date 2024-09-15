@@ -6,9 +6,16 @@ class LogoService {
       try {
         const logos = await LogoScrape.getLogos(websiteUrl);
         
+        logos.sort((a, b) => {
+          const isSvgA = a.url.includes('.svg');
+          const isSvgB = b.url.includes('.svg');
+          
+          return isSvgB - isSvgA;
+        });
 
-
-        return { logo, logos }
+        const logo = logos && logos.lenght ? logos[0] : null
+        
+        return { logo }
       } catch(err) {
         console.err(`Could not extract logos for ${websiteUrl}`, err);
       }
