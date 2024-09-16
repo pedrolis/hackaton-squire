@@ -134,32 +134,33 @@ class OpenAIService {
 
   async understandBusinessPrompt(businessContent) {
     return `
-        Use the following context in markdown to response some questions about the content:
+        Using the following context, respond in detail to the questions below, providing clear and accurate information about the project:
 
-        Content: 
+### Context: 
+${businessContent}
 
-        """
-        ${businessContent}
-        """
+---
 
-        ---
+Based on the information from the context:
 
-        From the previous context: 
+1. **Project Location**: Where is the project located? Include specific details about the neighborhood or region.
+2. **Unit Types**: What types of units are included in the project? Mention whether they are apartments, townhouses, or other kinds of units.
+3. **Unit Sizes and Prices**: What are the minimum unit sizes and starting prices? Provide specific measurements (in square meters or feet) and prices (in local currency).
+4. **Down Payment**: What is the minimum down payment required for purchasing a unit?
+5. **Project Highlights**: Why does La Haus (LH) believe this is a great project to invest in? Highlight any unique selling points such as location advantages, project amenities, or potential return on investment. 
+6. Benefits of buying throught La Haus.
 
-        - What's the company name?
-        - Which are their key main features?
-        - Which is its value proposition
-        - Who is their main audience?
-        - Which are their pricing model?
     `.trim()
   }
 
 
   async videoPrompt(companyInformation) {
     return `
-      You're an expert in audiovisual design, specializing in creating short, captivating company showcase videos. 
-      Your task is to create a 30-second video script for a company based on the text below, with a 440-character limit. 
-      The video should hook viewers immediately, highlight the company's key features, and end with a clear call to action. Generate the script without captions or brackets for use in a TTS synthesizer.
+      You're an expert in audiovisual design, specializing in creating short, captivating residential construction project showcase videos, mostly condo apartment buildings. You work for La Haus. Your task is to create a 30-second video script for a project based on the information below, with a 440-character limit. 
+The script should hook viewers immediately.  It should focus first on the project indicating its location (neighborhood and city), minimum unit size and price, minimum downpayment (“enganche” in Spanish) and why La Haus thinks this is a good project.
+Wrap up the script with the key benefits of buying through La Haus.
+Generate the script without captions or brackets for use in a TTS synthesizer.
+
 
       ${companyInformation}
     `.trim()

@@ -10,7 +10,7 @@ class CrawlService {
 
   async crawlWebsite(websiteUrl) {
     const scrapeResult = await firecrawlApp.scrapeUrl(websiteUrl, { 
-      formats: ['markdown'] 
+      formats: ['markdown', 'html'] 
     });
 
     if (!scrapeResult.success) {
