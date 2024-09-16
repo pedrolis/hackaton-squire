@@ -161,6 +161,8 @@ The script should hook viewers immediately.  It should focus first on the projec
 Wrap up the script with the key benefits of buying through La Haus.
 Generate the script without captions or brackets for use in a TTS synthesizer.
 
+You MUST describe in english the script.
+
 
       ${companyInformation}
     `.trim()
@@ -183,6 +185,7 @@ Generate the script without captions or brackets for use in a TTS synthesizer.
 Use a format where each fragment of the script is associated with a description of visuals. It must be identical in structure and format to the following example from another different script.
  { "segments": [ { "script": "Meet Squire, your new AI-powered coding assistant.", "visuals": "A sleek, futuristic workspace with a laptop on a desk. The camera zooms in to show an AI interface smoothly appearing on the screen, signaling the introduction of the assistant. Soft lighting and clean design give a modern, tech-focused atmosphere." }, { "script": "Imagine super-fast code reviews, all done in under a minute!", "visuals": "A fast-paced sequence showing code being automatically reviewed on the screen, with progress bars moving quickly. The scene then transitions to a visual of a digital timer rapidly counting down from 60 seconds, highlighting speed." }, { "script": "Squire's smart Pull Request Summaries simplify your workflow, letting you focus on what truly matters.", "visuals": "A developer working calmly at their desk. The camera focuses on the screen showing a pull request summary in a clean, well-organized format. The background softly fades to emphasize the simplicity and clarity of the process." }, { "script": "And soon, engage in interactive code chats and enriched issue reviews, elevating your team's productivity to new heights.", "visuals": "A visual of a futuristic chat interface where the AI assistant and a developer are engaging in real-time conversation. The background transitions to show team members collaborating, reinforcing the idea of seamless interaction and productivity." }, { "script": "Ready to revolutionize your development process? Try Squire today and code smarter, not harder.", "visuals": "The camera zooms out to show a developer closing their laptop confidently in a bright, modern office. The scene ends with a wide shot of the workspace, with natural light streaming in, symbolizing productivity and success." } ] } 
 
+ You MUST describe in english the script and the visuals.
 
 
     ${salesVideoPitch}
