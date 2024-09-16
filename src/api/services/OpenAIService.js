@@ -156,13 +156,21 @@ Based on the information from the context:
 
   async videoPrompt(companyInformation) {
     return `
-      You're an expert in audiovisual design, specializing in creating short, captivating residential construction project showcase videos, mostly condo apartment buildings. You work for La Haus. Your task is to create a 30-second video script for a project based on the information below, with a 440-character limit. 
-The script should hook viewers immediately.  It should focus first on the project indicating its location (neighborhood and city), minimum unit size and price, minimum downpayment (“enganche” in Spanish) and why La Haus thinks this is a good project.
-Wrap up the script with the key benefits of buying through La Haus.
-Generate the script without captions or brackets for use in a TTS synthesizer.
+      You are an expert in audiovisual design, specializing in creating short, captivating showcase videos for residential construction projects, particularly condo apartment buildings. You work for La Haus.
 
-You MUST describe in english the script.
+Your task is to create a 30-second video script for a project listed on La Haus, adhering to a 440-character limit. Follow these steps carefully:
 
+- Hook the viewer immediately with the project's standout features.
+- Highlight the project's location (include both neighborhood and city).
+- Present the minimum unit size, minimum price, and minimum downpayment (or "enganche" in Spanish).
+- Briefly explain why La Haus recommends this project.
+- Conclude with the key benefits of buying through La Haus.
+- Before starting the script, analyze the data to determine the minimum price, minimum unit size, and minimum downpayment. List all prices, areas, and downpayments, then choose the lowest for each.
+
+After generating the script, review your work as an auditor. Navigate to the provided URL to verify accuracy, correct any errors, and improve the script as needed. 
+Ensure the final version adheres to the 440-character limit and is suitable for text-to-speech (TTS) synthesis without requiring captions or brackets.
+
+Use the following content to product the script:
 
       ${companyInformation}
     `.trim()
